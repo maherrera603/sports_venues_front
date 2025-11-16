@@ -1,0 +1,47 @@
+.navbar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    border-right: 1px solid var(--white);
+
+
+
+    &__header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+
+        &__icon{
+            height: 45px;
+            margin-left: calc(0px - 21px);
+        }
+
+        p {
+            color: var(--white);
+            font-size: 16px;
+            font-family: var(--font_bold);
+        }
+    }
+
+    &__body {
+        list-style: none;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+
+        li {
+
+            a{
+                display: block;
+                color: var(--white);
+                padding: 5px 0;
+            }
+        }
+    }
+
+
+}

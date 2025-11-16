@@ -1,0 +1,18 @@
+<div class="content__sport__venues">
+    <div class="content__sport__venues__header">
+        <h3>Espacios Deportivos</h3>
+        <button type="button"></button>
+    </div>
+
+    @for(sport of sports; track sport.id){
+
+        <div class="content__sport__venues__card">
+            <img src="/assets/images/conner.webp" alt="">
+            <p class="content__sport__venues__card__title">{{sport.name}}</p>
+            <div class="content__sport__venues__card__actions">
+                <button type="button" class="btn-primary"></button>
+                <button type="button" (click)="handleDeleteSportVenue( sport.id )"></button>
+            </div>
+        </div>
+    }
+</div>

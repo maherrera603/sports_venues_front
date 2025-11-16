@@ -1,0 +1,42 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.content__signup {
+    background-color: var(--white);
+    box-shadow: 0px 0px 3px var(--white);
+    min-width: min( 100% - 10%, 450px);
+    width: min( 100% - 10%, 450px);
+    max-width: min( 100% - 10%, 450px);
+    border-radius: var(--border_radius);
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 30px;
+
+    &__header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+    }
+
+    &__footer{
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+}
+

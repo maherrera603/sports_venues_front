@@ -1,0 +1,42 @@
+<div class="content__profile">
+
+    <div class="content__profile__header">
+        <h2>editar perfil</h2>
+        <div class="content__profile__header__letters">{{ lettersInitial }}</div>
+    </div>
+
+    <form [formGroup]="profileForm" (ngSubmit)="handleSubmit()" class="content__profile__body">
+        <div class="form__control">
+            <label for="name">nombres</label>
+            <input type="text" formControlName="name" name="name" id="name">
+            <p class="error__content" [hidden]="name.valid || name.pristine">ingrese los nombres</p>
+        </div>
+
+        <div class="form__control">
+            <label for="lastname">apellidos</label>
+            <input type="text" formControlName="lastname" name="lastname" id="lastname">
+            <p class="error__content" [hidden]="lastname.valid || lastname.pristine">ingrese los apellidos</p>
+        </div>
+
+
+        <div class="form__control">
+            <label for="phone">telefono</label>
+            <input type="tel" formControlName="phone" name="phone" id="phone">
+            <p class="error__content" [hidden]="phone.valid || phone.pristine">ingrese el numero de telefono</p>
+        </div>
+
+        <div class="form__control">
+            <label for="email">correo electronico</label>
+            <input type="email" formControlName="email" name="email" id="email">
+            <p class="error__content" [hidden]="email.valid || email.pristine">ingrese un correo electronico valido</p>
+        </div>
+
+        <div class="form__actions">
+            <button type="submit" class="btn-primary">guardar</button>
+        </div>
+
+    </form>
+</div>
+
+
+<app-alert #alert/>

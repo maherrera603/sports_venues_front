@@ -1,0 +1,35 @@
+<div class="content__signin">
+
+    <div class="content__signin__header">
+        <img src="/assets/images/logo.webp" alt="" class="logo">
+        <h1>iniciar sesion</h1>
+    </div>
+
+    <form [formGroup]="singInForm" (ngSubmit)="handleSubmit()" class="content__signin__body">
+        <div class="form__control">
+            <label for="email">correo electronico</label>
+            <input formControlName="email" type="email" name="email" id="email">
+            <p class="error__content" [hidden]="email.valid || email.pristine">ingrese un correo electronico valido</p>
+        </div>
+
+        <div class="form__control">
+            <label for="password">contraseña</label>
+            <input formControlName="password" type="password" name="password" id="password">
+            <p class="error__content" [hidden]="password.valid || password.pristine">ingrese una contraseña valida</p>
+        </div>
+
+        <div class="form__action">
+            <button type="submit" class="btn-primary">ingresar</button>
+        </div>
+    </form>
+
+
+    <div class="content__signin__footer">
+        <a routerLink="recuperar-contraseña">recuperar contraseña</a>
+        <a routerLink="crear-cuenta">crear cuenta</a>
+    </div>
+
+</div>
+
+
+<app-alert />

@@ -1,0 +1,49 @@
+<div class="content__signup">
+
+    <div class="content__signup__header">
+        <img src="/assets/images/logo.webp" alt="" class="logo">
+        <h1>crear cuenta</h1>
+    </div>
+
+    <form [formGroup]="signUpForm" (ngSubmit)="handleSubmit()" class="content__signup__body">
+        <div class="form__control">
+            <label for="name">nombres</label>
+            <input formControlName="name" type="text" name="name" id="name">
+            <p class="error__content" [hidden]="name.valid || name.pristine">ingrese los nombres</p>
+        </div>
+        <div class="form__control">
+            <label for="lastname">apellidos</label>
+            <input formControlName="lastname" type="text" name="lastname" id="lastname">
+            <p class="error__content" [hidden]="lastname.valid || lastname.pristine">ingrese los apellidos</p>
+        </div>
+
+        <div class="form__control">
+            <label for="phone">telefono</label>
+            <input type="tel" formControlName="phone" name="phone" id="phone">
+            <p class="error__content" [hidden]="phone.valid || phone.pristine">ingrese numero de telefono valido</p>
+        </div>
+
+        <div class="form__control">
+            <label for="email">correo electronico</label>
+            <input type="email" formControlName="email" name="email" id="email">
+            <p class="error__content" [hidden]="email.valid || email.pristine">ingrese un correo electronico valido</p>
+        </div>
+
+        <div class="form__control">
+            <label for="password">contraseña</label>
+            <input type="password" formControlName="password" name="password" id="password">
+            <p class="error__content" [hidden]="password.valid || password.pristine">ingrese una contraseña valida</p>
+        </div>
+
+        <div class="form__action">
+            <button type="submit" class="btn-primary">ingresar</button>
+        </div>
+    </form>
+
+
+    <div class="content__signup__footer">
+        <a routerLink="/">ya tengo una cuenta</a>
+    </div>
+</div>
+
+<app-alert />

@@ -1,0 +1,50 @@
+.content__profile {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 20px;
+
+
+    &__header{
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+
+        h2{
+            color: var(--white);
+        }
+
+        &__letters {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 1px solid var(--white);
+            align-content: center;
+            text-align: center;
+            backdrop-filter: blur( 10px);
+            font-size: 40px;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+    }
+
+    &__body {
+        min-width: min(100% - 10%, 500px);
+        width: min(100% - 10%, 500px);
+        max-width: min(100% - 10%, 500px);
+        min-height: 382px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+        padding: 30px 15px;
+
+        .form__control label{
+            color: var(--white);
+        }
+    }
+
+}
+

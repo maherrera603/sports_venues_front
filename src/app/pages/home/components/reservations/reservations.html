@@ -1,0 +1,119 @@
+
+<div class="content__reservations">
+    <div class="content__reservations__title">
+        <h3>Reservaciones</h3>
+        <div class="content__reservations__title__actions">
+            <button type="button" class="btn-primary btn-refresh" title="refrescar" (click)="handleLoadReservations()"></button>
+            @if( !isAdmin){
+                <button type="button" class="btn-primary btn-add" title="crear reservacion" (click)="handleOpenOverlay()"></button>
+            }
+        </div>
+    </div>
+
+    <div class="content__reservations__body">
+        <div class="content__reservations__body__table">
+            <div class="content__reservations__body__table__header">
+                cliente
+            </div>
+            <div class="content__reservations__body__table__header">
+                fecha
+            </div>
+            <div class="content__reservations__body__table__header">
+                hora
+            </div>
+            <div class="content__reservations__body__table__header">
+                status
+            </div>
+            <div class="content__reservations__body__table__header">
+                accion
+            </div>
+
+            @for (reservation of reservations; track $index) {
+                <div class="content__reservations__body__table__body">
+                    {{ reservation.to_user.name}}
+                </div>
+                <div class="content__reservations__body__table__body">
+                    {{ reservation.date_reservation }}
+                </div>
+                <div class="content__reservations__body__table__body">
+                    {{ reservation.hour_initial}}
+                </div>
+                <div class="content__reservations__body__table__body">
+                    {{ getStatus(reservation.status)}}
+                </div>
+                <div class="content__reservations__body__table__body">
+                    <button type="button" class="btn-primary" (click)="handleLoadData(reservation)"></button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="overlay__reservations" #overlayReservation>
+    <div class="overlay__reservations__popup">
+        <div class="overlay__reservations__popup__header">
+            <h3>reservacion</h3>
+            <button class="btn-primary" (click)="handleOpenOverlay()"></button>
+        </div>
+        <form  [formGroup]="reservationForm" (ngSubmit)="handleSubmit()" class="overlay__reservations__popup__body">
+            <div class="form__control">
+                <label for="date_reservation">fecha de reservacion</label>
+                <input formControlName="date_reservation" type="date" name="date_reservation" id="date_reservation">
+                <p class="error__content" [hidden]="date_reservation.valid || date_reservation.pristine">seleccione la fecha de reservacion</p>
+            </div>
+            <div class="form__control">
+                <label for="hours">cantidad de horas</label>
+                <input type="number" formControlName="hours" name="hours" id="hours" max="1" maxlength="1">
+                <p class="error__content" [hidden]="hours.valid || hours.pristine">ingrese la cantidad de horas</p>
+            </div>
+            <div class="form__control">
+                <label for="hour_initial">hora inicial</label>
+                <input type="time" formControlName="hour_initial" min="15:00" max="22:00" name="hour_initial" id="hour_initial">
+                <p class="error__content" [hidden]="hour_initial.valid || hour_initial.pristine">
+                    seleccione la hora inicial
+                </p>
+            </div>
+
+            <div class="form__control">
+                <label for="hour_finish">hora de finalizacion</label>
+                <input type="time" formControlName="hour_finish" min="15:00" max="22:00" name="hour_finish" id="hour_finish">
+                <p class="error__content" [hidden]="hour_finish.valid || hour_finish.pristine">
+                    seleccione la hora de finalizacion
+                </p>
+            </div>
+
+            <div class="form__control">
+                <label for="sports_venue">espacio deportivo</label>
+                <select formControlName="sports_venue" name="sports_venue" id="sports_venue">
+                    <option selected disabled>-- seleccione el espacio deportivo --</option>
+                    @for( item of sports; track $index ){
+                        <option [value]="item.id">{{ item.name }}</option>
+                    }
+                </select>
+                <p class="error__content" [hidden]="sports_venue.valid">
+                    seleccione el espacio deportivo
+                </p>
+            </div>
+
+            @if(isAdmin){
+                <div class="form__control">
+                    <label for="status">estado</label>
+                    <select name="status" id="status" formControlName="status">
+                        <option selected disabled>-- seleccione el estado --</option>
+                        <option value="confirm">confirmada</option>
+                        <option value="pending">pendiente</option>
+                    </select>
+                    <p class="error__content" [hidden]="status.valid">
+                        seleccione el estado
+                    </p>
+                </div>
+            }
+            @if(isEdit){
+                <div class="form__actions">
+                    <button type="submit" class="btn-primary">guardar</button>
+                </div>
+            }
+        </form>
+    </div>
+</div>

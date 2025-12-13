@@ -5,10 +5,23 @@
     grid-template-columns: 15% 85%;
     column-gap: 10px;
     padding: 50px 0;
-    
+
 }
 
 .content__dashboard {
     width: 100%;
     padding: 0 0 0 20px;
+}
+
+
+@media screen  and ( max-width: 1300px ){
+    :host {
+        display: block;
+        grid-template-columns: none;
+        padding: 30px 0;
+    }
+
+    .content__dashboard {
+        padding: 0;
+    }
 }

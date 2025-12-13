@@ -10,4 +10,7 @@
     background-position: center;
     border-radius: 50%;
     border: 1px solid var(--white);
+    box-shadow: 0 0 2px var(--white);
+    z-index: 100;
+    backdrop-filter: blur(10px);
 }

@@ -1,4 +1,18 @@
-<app-sport-venues [alert]="alert" />
+<app-sport-venues
+  [alert]="alert"
+  [user]="user"
+  [token]="token"
+  (reservations)="receiveReservations($event)"
+  (sportsEmit)="receiveSportsVenue($event)"
+/>
+
+<app-reservations
+  [alert]="alert"
+  [user]="user"
+  [token]="token"
+  [reservations]="reservations"
+  [sports]="sports"
+/>
 
 
 <app-alert  #alert />

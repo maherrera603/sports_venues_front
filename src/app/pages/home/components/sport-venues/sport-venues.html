@@ -1,18 +1,70 @@
 <div class="content__sport__venues">
     <div class="content__sport__venues__header">
         <h3>Espacios Deportivos</h3>
-        <button type="button"></button>
+        @if(isAdmin){
+            <button type="button" (click)="handleViewSportVenue()"></button>
+        }
     </div>
 
-    @for(sport of sports; track sport.id){
+    <div class="content__sport__venues__body">
 
-        <div class="content__sport__venues__card">
-            <img src="/assets/images/conner.webp" alt="">
-            <p class="content__sport__venues__card__title">{{sport.name}}</p>
-            <div class="content__sport__venues__card__actions">
-                <button type="button" class="btn-primary"></button>
-                <button type="button" (click)="handleDeleteSportVenue( sport.id )"></button>
+        @for(sport of sports; track sport.id){
+    
+            <div class="content__sport__venues__body__card" (click)="handleSelectReservation( sport )">
+                <img src="/assets/images/conner.webp" alt="">
+                <div class="content__sport__venues__body__card__information">
+                    <p class="content__sport__venues__body__card__information__title">{{sport.name}}</p>
+                    @if (isAdmin) {
+                        <button type="button" (click)="handleViewSportVenue( sport )"></button>
+                    }
+                </div>
             </div>
+        }
+    </div>
+
+</div>
+
+<div class="overlay__sport__venues" #overlaySportVenues>
+
+    <div class="overlay__sport__venues__popup">
+        <div class="overlay__sport__venues__popup__title">
+            <h3>Agregar espacio deportivo</h3>
+            <button type="button" title="cerrar ventana" (click)="handleViewSportVenue(sport)"></button>
         </div>
-    }
+
+        <form [formGroup]="sportVenueForm" (ngSubmit)="handleSubmitForm()" class="overlay__sport__venues__popup__body">
+            <div class="form__control">
+                <label for="name">espacio deportivo</label>
+                <input type="text" formControlName="name" name="name" id="name">
+                <p class="error__content">
+                    ingrese un nombre valido
+                </p>
+            </div>
+
+            <div class="form__control">
+                <label for="venue">direccion</label>
+                <input type="text" formControlName="venue" name="venue" id="venue">
+                <p class="error__content">
+                    ingrese una direccion correcta
+                </p>
+            </div>
+
+            <div class="form__control">
+                <label for="available">estado</label>
+                <select name="available" id="available" formControlName="available">
+                    <option disabled >--- seleccione ---</option>
+                    <option value="enabled">Habilitado</option>
+                    <option value="disabled">deshabilitado</option>
+                </select>
+                <p class="error__content">
+                    ingrese una direccion correcta
+                </p>
+            </div>
+            
+            <div class="form__action">
+                <button type="submit" class="btn-primary">guardar</button>
+            </div>
+        </form>
+    </div>
+
 </div>

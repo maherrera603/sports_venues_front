@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { Auth } from '../../services';
 
@@ -11,6 +11,7 @@ import { Auth } from '../../services';
 export class Navbar {
   protected isAdmin:boolean;
   protected isUser: boolean;
+  @ViewChild("navbarMovile", { static: true }) protected navbarMovile!: ElementRef<HTMLElement>;
 
   constructor(private readonly authService: Auth, private  readonly router: Router){
     this.isAdmin = this.authService.isAdmin;
@@ -20,6 +21,14 @@ export class Navbar {
   protected handleCloseSession(){
     this.authService.resetLS();
     this.router.navigate([""]);
+  }
+
+
+  protected handleOpenAndCloseNavbar(){
+    console.log("debugueando");
+    const isValid = this.navbarMovile.nativeElement.classList.contains("navbar__active");
+    if( !isValid ) return this.navbarMovile.nativeElement.classList.add("navbar__active");
+    return this.navbarMovile.nativeElement.classList.remove("navbar__active");
   }
 
 }

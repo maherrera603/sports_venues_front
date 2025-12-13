@@ -9,14 +9,14 @@
     overflow: hidden;
     border-radius: var(--border_radius);
     padding: 10px;
-    visibility: visible;
-    opacity: 0;
     display: flex;
     flex-direction: column;
     row-gap: 10px;
     transition-behavior: initial;
+    opacity: 0;
+    visibility: visible;
     transform: translateX(100%);
-    transition: transform 1s ease-in-out;
+    transition: 0.8s ease all;
 
     &__header {
         display: flex;
@@ -47,12 +47,12 @@
 
 
 .content__alert__success {
-    visibility: visible;
     opacity: 1;
-    transform: translateX(0);
+    visibility: visible;
     border: 1px solid var(--bg_button);
     color: var(--bg_button);
-
+    transform: translateX(0%);
+    
     .content__alert__header{
         border-bottom: 1px solid var(--bg_button);
     }

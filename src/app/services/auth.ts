@@ -14,7 +14,7 @@ export class Auth {
   private platformId = inject(PLATFORM_ID);
 
   constructor( private readonly httpClient:HttpClient ){}
-  
+
   public signUp( signUp: ISignUp ):Observable<IResponse<IUser>>{
     const headers = new HttpHeaders().set("Content-Type", "application/json");
     return this.httpClient.post<IResponse<IUser>>(`${this.url}register`, JSON.stringify(signUp), { headers })
@@ -30,35 +30,35 @@ export class Auth {
   public saveUserLS(user: IUser){
     const key = Crypto.hashKey(Envs.KEY_USER_LS);
     const value = Crypto.hashContent( JSON.stringify(user ));
-    localStorage.setItem(key, value);
+    sessionStorage.setItem(key, value);
   }
-  
+
 
   public saveTokenLS(token: string ){
     const key = Crypto.hashKey(Envs.KEY_TOKEN_LS);
     const value = Crypto.hashContent( JSON.stringify(token) );
-    localStorage.setItem(key, value);
+    sessionStorage.setItem(key, value);
   }
 
   public get getUserLS(): IUser | null{
     if(!isPlatformBrowser(this.platformId)) return null;
-    
+
     const key = Crypto.hashKey(Envs.KEY_USER_LS);
-    const data = localStorage.getItem(key);
+    const data = sessionStorage.getItem(key);
     return data ? Crypto.decryptContent<IUser>(data): null;
   }
 
   public get getTokenLS(): string | null{
     if(!isPlatformBrowser(this.platformId)) return null;
-    
+
     const key = Crypto.hashKey(Envs.KEY_TOKEN_LS);
-    const data = localStorage.getItem(key);
+    const data = sessionStorage.getItem(key);
     return data ? "Bearer "+ Crypto.decryptContent<string>(data): null;
   }
 
   public resetLS(){
     if(!isPlatformBrowser(this.platformId)) return;
-    localStorage.clear();
+    sessionStorage.clear();
   }
 
   public get isAdmin(): boolean {

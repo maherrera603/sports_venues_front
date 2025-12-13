@@ -23,4 +23,16 @@ export class Sport {
     return this.httpClient.get<IResponse<ISport[]>>(`${this.url}available/true`, {headers})
       .pipe(catchError(({ error }) => of(error)));
   }
+
+  public createSportVenue( token: string, data: ISport ): Observable<IResponse<ISport>>{
+    const headers = new HttpHeaders().set("Authorization", token).set("Content-Type", "application/json");
+    return this.httpClient.post<IResponse<ISport>>(`${this.url}`, JSON.stringify(data), { headers })
+      .pipe( catchError(({ error}) => of(error)));
+  }
+
+    public updateSportVenue( token: string, data: ISport ): Observable<IResponse<ISport>>{
+    const headers = new HttpHeaders().set("Authorization", token).set("Content-Type", "application/json");
+    return this.httpClient.put<IResponse<ISport>>(`${this.url}${data.id}`, JSON.stringify(data), { headers })
+      .pipe( catchError(({ error}) => of(error)));
+  }
 }

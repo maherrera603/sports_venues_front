@@ -1,34 +1,45 @@
-<nav class="navbar">
+
+<div class="navbar__movile" >
+    <button type="button"(click)="handleOpenAndCloseNavbar()"></button>
+</div>
+
+
+<nav class="navbar" #navbarMovile>
     <div class="navbar__header">
-        <img src="/assets/images/logo.webp" class="navbar__header__icon" alt="">
-        <p>Dashboard</p>
+        <div class="navbar__header__title">
+            <img src="/assets/images/logo.webp" class="navbar__header__title__icon" alt="">
+            <p>Dashboard</p>
+        </div>
+        <div class="navbar__header__close">
+            <button type="button" (click)="handleOpenAndCloseNavbar()"></button>
+        </div>
     </div>
 
     <ul class="navbar__body">
         @if(isUser){
 
             <li>
-                <a routerLink="/usuario/">Inicio</a>
+                <a routerLink="/usuario/" class="link link_home" (click)="handleOpenAndCloseNavbar()">Inicio</a>
             </li>
-    
+
             <li>
-                <a routerLink="/usuario/perfil">profile</a>
+                <a routerLink="/usuario/perfil" class="link link_profile" (click)="handleOpenAndCloseNavbar()">profile</a>
             </li>
         }
 
         @if(isAdmin){
 
             <li>
-                <a routerLink="/administrador/">Inicio</a>
+                <a routerLink="/administrador/" class="link link_home" (click)="handleOpenAndCloseNavbar()">Inicio</a>
             </li>
-    
+
             <li>
-                <a routerLink="/administrador/perfil">profile</a>
+                <a routerLink="/administrador/perfil" class="link link_profile" (click)="handleOpenAndCloseNavbar()">profile</a>
             </li>
         }
 
         <li>
-            <a (click)="handleCloseSession()">cerrar sesion</a>
+            <a (click)="handleCloseSession()" class="link link_close">cerrar sesion</a>
         </li>
     </ul>
 </nav>

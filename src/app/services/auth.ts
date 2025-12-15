@@ -27,6 +27,12 @@ export class Auth {
       .pipe( catchError(({ error }) => of(error)) );
   }
 
+  public activateAccount( token: string ):Observable<IResponse<{}>>{
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
+    return this.httpClient.put<IResponse<{}>>(`${this.url}active-account`,  {}, { headers })
+      .pipe( catchError( ({ error }) => of( error )));
+  }
+
   public saveUserLS(user: IUser){
     const key = Crypto.hashKey(Envs.KEY_USER_LS);
     const value = Crypto.hashContent( JSON.stringify(user ));

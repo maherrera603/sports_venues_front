@@ -17,5 +17,5 @@ export class Envs {
         return ""; // contraseña para encryptar la key de token para local storage
     }
 
-    
+
 }

@@ -1,0 +1,29 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content__not_found {
+  color: var(--white);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  h1{
+    font-family: var(--font_bold);
+    font-size: 10rem;
+  }
+
+  a{
+    display: block;
+    background-color: var(--bg_button);
+    color: var(--white);
+    border-radius: var(--border_radius);
+    height: 35px;
+    align-content: center;
+
+  }
+}

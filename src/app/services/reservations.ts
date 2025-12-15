@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Envs } from '../helpers';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
-import { DReservation, IReservation, IResponse, ISport } from '../interfaces';
+import { DReservation, IReservation, IResponse } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',

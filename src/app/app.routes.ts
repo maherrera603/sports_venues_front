@@ -5,20 +5,27 @@ import { Dashboard } from './layouts/dashboard/dashboard';
 import { Home } from './pages/home/home';
 import { Profile } from './pages/profile/profile';
 import { userGuard,adminGuard, authGuard } from './guards';
+import {ActivateAccount} from './pages/activate-account/activate-account';
+import {NotFound} from './pages/not-found/not-found';
 
 
 export const routes: Routes = [
-    {   path: "", 
+    {   path: "",
         component: Singin,
         canActivate: [ authGuard ]
     },
-    { 
-        path: "crear-cuenta", 
+    {
+        path: "crear-cuenta",
         component: Singup,
         canActivate: [ authGuard ]
     },
     {
-        path: "usuario", 
+        path: "activar-cuenta/:token",
+        component: ActivateAccount,
+        canActivate: [ authGuard ]
+    },
+    {
+        path: "usuario",
         component: Dashboard,
         canActivate: [ userGuard ],
         children: [
@@ -27,12 +34,15 @@ export const routes: Routes = [
         ]
     },
     {
-        path: "administrador", 
+        path: "administrador",
         component: Dashboard,
         canActivate: [ adminGuard ],
         children: [
             { path: "", component: Home},
             { path: "perfil", component: Profile},
         ]
+    },{
+        path: "**",
+        component: NotFound,
     }
 ];
